@@ -20,6 +20,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true });
 const Note = mongoose.model("Note", {
 	title: String,
 	content: String,
+	canvasData: String,
 });
 
 // Listen for successful MongoDB connection
@@ -51,13 +52,13 @@ app.get("/api/notes", async (req, res) => {
 // Update Note by ID
 // Update Note by ID
 app.put("/api/notes/:id", async (req, res) => {
-	const { title, content } = req.body;
+	const { title, content ,canvasData} = req.body;
 	const noteId = req.params.id;
 
 	try {
 		const updatedNote = await Note.findByIdAndUpdate(
 			noteId,
-			{ title, content },
+			{ title, content ,canvasData},
 			{ new: true }
 		);
 		res.json(updatedNote);
@@ -79,9 +80,9 @@ app.delete("/api/notes/:id", async (req, res) => {
 });
 
 app.post("/api/notes", async (req, res) => {
-	const { title, content } = req.body;
+	const { title, content,canvasData } = req.body;
 
-	const note = new Note({ title, content });
+	const note = new Note({ title, content,canvasData });
 
 	try {
 		const newNote = await note.save();
