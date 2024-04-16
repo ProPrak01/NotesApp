@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 // Connect to MongoDB Atlas
 const dbURI = "mongodb+srv://ph1010ishard:gcEf1y2oPOlUrbXG@cluster0.1th9ukw.mongodb.net/";
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(dbURI, {  useNewUrlParser: true, useUnifiedTopology: true });
 
 // Define Note model
 const Note = mongoose.model("Note", {
